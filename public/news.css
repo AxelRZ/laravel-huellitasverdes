@@ -1,0 +1,12 @@
+body {
+    background: url("pattern.png");
+    background-attachment: fixed;
+}
+
+.menu {
+    top: 3rem;
+}
+
+.active {
+    display: block;
+}

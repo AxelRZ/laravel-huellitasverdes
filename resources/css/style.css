@@ -1,0 +1,53 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@layer utilities {
+    @responsive{
+        .nav-border{
+            border-bottom: 1px solid rgba(94, 94, 94, 0.527);
+    
+        }
+
+
+    }
+    
+}
+@layer components{
+    @responsive{
+        .card{
+            background:white;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 0.25rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    
+    
+    
+        }
+
+        .card-transparent{
+
+            background:white;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 0.25rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+
+        }
+
+        .no-card{
+            background:none;
+            width: auto;
+            overflow: visible;
+            border-radius: none;
+            box-shadow: none;
+        }
+
+    }
+
+}
