@@ -13,6 +13,13 @@
 
 
     }
+
+    .max-w-default{
+        max-width: 48rem;
+    }
+    .w-default{
+        width: 48rem;
+    }
     
 }
 @layer components{
@@ -48,6 +55,21 @@
             box-shadow: none;
         }
 
+    }
+
+    .cards{
+        display:flex;
+        flex-wrap:wrap;
+        margin: 0 auto;
+    
+
+        
+
+    }
+
+    .column{
+        padding: 0 0.5rem;
+        margin: 0.5rem 0;
     }
 
 }

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/news', function(){
+    return redirect('news/0');
+});
+Route::get('/news/{page}', [NewsController::class, 'composeView']);
+
+Route::get('/login', [LoginController::class, 'show']);
+Route::post('/login', [LoginController::class, 'onLogin']);

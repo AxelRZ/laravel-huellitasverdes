@@ -1,0 +1,19 @@
+html{
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background: url("pattern.png");
+    background-attachment: fixed;
+    min-height: 100%;
+
+}
+
+.menu {
+    top: 3rem;
+}
+
+.active {
+    display: block;
+}

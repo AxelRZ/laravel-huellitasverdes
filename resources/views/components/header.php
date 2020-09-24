@@ -1,11 +1,11 @@
 <header
-        class="  w-full bg-white border-huellitas_brown fixed h-12  shadow-lg nav-border" style="z-index: 10;">
+        class="  w-full bg-white border-huellitas_brown fixed h-12  shadow-lg nav-border" style="z-index: 100;">
         <div class="navwrapper flex flex-wrap  h-full mx-auto items-center justify-between ">
 
 
             <div class=" whitespace-no-wrap flex-shrink ml-4 ">
                 <i class="fas fa-paw fa-2x fill-current text-huellitas_brown "></i>
-                <a href="#" class="text-3xl  mx-auto font-bold ">Huellitas <span
+                <a href="/" class="text-3xl  mx-auto font-bold ">Huellitas <span
                         class=" text-huellitas_green">verdes</span>
                 </a>
 
@@ -27,9 +27,18 @@
                 class=" hidden block nav-nav w-full md:w-1/2  md:flex md:mr-4 md:border-0 md:shadow-none nav-border shadow-lg">
                 <ul class="md:flex md:space-x-5 px-5 py-3  md:py-0 md:px-0 text-xl md:ml-auto bg-white">
 
-                    <li><a href="">Conocenos</a></li>
-                    <li><a href="news" class="">Noticias</a></li>
-                    <li><a href="" class="">Contacto</a></li>
+                <?php
+
+                    $routes = array("Noticias"=>"news");
+
+                    foreach ($routes as $key => $value):
+
+                ?>
+
+
+                    <li><a href="/<?php echo $value ?>" class="<?php if ('/'.$value == $_SERVER['REQUEST_URI']){echo "font-bold";}?>"><?php echo $key ?></a></li>
+
+                    <?php endforeach; ?>
 
                 </ul>
 

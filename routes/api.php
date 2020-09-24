@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('articles', [NewsController::class,'index']);
+Route::get('articles/{id}', [NewsController::class,'query']);
+Route::get('articles/range/{start}-{end}', [NewsController::class,'queryrange']);
+Route::post('articles', [NewsController::class,'save']);
+Route::put('articles/{id}', [NewsController::class,'update']);
+Route::delete('articles/{id}', [NewsController::class,'delete']);
+

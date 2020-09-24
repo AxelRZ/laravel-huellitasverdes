@@ -1,3 +1,4 @@
+const { webpackConfig } = require('laravel-mix');
 const mix = require('laravel-mix');
 
 /*
@@ -11,7 +12,13 @@ const mix = require('laravel-mix');
  |
  */
 
+
+
+
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .styles('resources/css/huellitas.css','public/css/huellitas.css')
+    .minify('public/css/huellitas.css')
+    .sass('resources/sass/owl/owl.carousel.scss', 'public/css')
+    .js('resources/js/owl.carousel.js', 'public/js')
+
+

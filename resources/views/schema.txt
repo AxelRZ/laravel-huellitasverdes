@@ -1,0 +1,16 @@
+@extends('layout')
+
+@section('title',"Huellitas Verdes")
+
+@section('css')
+
+@endsection
+
+@section('body')
+
+    
+@endsection
+
+
+
+

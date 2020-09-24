@@ -13,6 +13,8 @@ module.exports = {
         '1/2': "50%"
       },
 
+      
+
       colors: {
         huellitas_brown: '#6a3e19',
         huellitas_green: '#86b727',
