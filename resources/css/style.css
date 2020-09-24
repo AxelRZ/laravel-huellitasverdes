@@ -20,6 +20,9 @@
     .w-default{
         width: 48rem;
     }
+    .active {
+        display: block;
+    }
     
 }
 @layer components{

@@ -27,18 +27,32 @@
                 class=" hidden block nav-nav w-full md:w-1/2  md:flex md:mr-4 md:border-0 md:shadow-none nav-border shadow-lg">
                 <ul class="md:flex md:space-x-5 px-5 py-3  md:py-0 md:px-0 text-xl md:ml-auto bg-white">
 
-                <?php
-
-                    $routes = array("Noticias"=>"news");
-
-                    foreach ($routes as $key => $value):
-
-                ?>
 
 
-                    <li><a href="/<?php echo $value ?>" class="<?php if ('/'.$value == $_SERVER['REQUEST_URI']){echo "font-bold";}?>"><?php echo $key ?></a></li>
 
-                    <?php endforeach; ?>
+
+
+                <li><a href="/news" class="{{ (request()->is('/news'))?'font-bold':'' }}">Noticias</a></li>
+                @auth
+                    @if(auth()->user()->isAdmin())
+                    <li><a href="/admin" class="{{ (request()->is('/admin'))?'font-bold':'' }}">Panel de administrador</a></li>
+                    @endif
+
+                <li><a href="/logout" class="">Salir</a></li>
+                
+                @endauth
+
+                @guest
+                    <li><a href="/login" class="">Ingresar</a></li>
+                    
+                    
+                @endguest
+
+                
+
+
+
+
 
                 </ul>
 

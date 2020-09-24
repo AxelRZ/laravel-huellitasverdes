@@ -24,6 +24,13 @@
         <div class="wrapper w-full    justify-center">
 
             {{-- TMP msg--}}
+            @if(session()->has('status'))
+
+            <div class="w-full bg-huellitas_dark text-white p-2 text-center">
+            <p> {{session('status')}}</p>
+            </div>
+
+            @endif
             
 
             {{-- TMP msg--}}

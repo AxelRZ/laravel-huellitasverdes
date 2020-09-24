@@ -23,7 +23,7 @@ class NewsController extends Controller
 
     }
 
-    public function save(Request $request)
+    public function create(Request $request)
     {
         return Article::create($request->all());
     }
@@ -36,6 +36,14 @@ class NewsController extends Controller
         return $article;
     }
 
+    public function delete(Request $request, $id)
+    {
+        $article = Article::findOrFail($id);
+        $article->delete();
+
+        return 204;
+    }
+    
     public function composeView($page){
 
         $queue = 10;
@@ -61,13 +69,7 @@ class NewsController extends Controller
 
     
 
-    public function delete(Request $request, $id)
-    {
-        $article = Article::findOrFail($id);
-        $article->delete();
-
-        return 204;
-    }
+    
 
 
 

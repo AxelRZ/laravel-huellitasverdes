@@ -26,3 +26,5 @@ Route::post('articles', [NewsController::class,'save']);
 Route::put('articles/{id}', [NewsController::class,'update']);
 Route::delete('articles/{id}', [NewsController::class,'delete']);
 
+
+

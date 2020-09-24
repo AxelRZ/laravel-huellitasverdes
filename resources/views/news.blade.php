@@ -16,9 +16,7 @@ html {
     top: 3rem;
 }
 
-.active {
-    display: block;
-}
+
 .title{
     margin-bottom: 0.5rem;
     text-align: center;

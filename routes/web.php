@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
@@ -26,3 +27,5 @@ Route::get('/news/{page}', [NewsController::class, 'composeView']);
 
 Route::get('/login', [LoginController::class, 'show']);
 Route::post('/login', [LoginController::class, 'onLogin']);
+Route::get('/admin', [AdminController::class, 'show'])->middleware('admin.control');
+Route::get('/logout', [LoginController::class,'logout']);
