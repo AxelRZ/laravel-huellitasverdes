@@ -28,13 +28,28 @@ class NewsController extends Controller
         return Article::create($request->all());
     }
 
-    public function update(Request $request, $id)
+    public function updateId(Request $request, $id)
     {
         $article = Article::findOrFail($id);
         $article->update($request->all());
 
         return $article;
     }
+
+    public function update(Request $request){
+        $article = Article::findOrFail($request->input('id'));
+
+        $article->attributes['title'] = $request->input('title');
+        $article->attributes['body_raw'] = $request->input('body_raw');
+        $article->attributes['bgcolor'] = $request->input('bgcolor');
+        $article->attributes['fgcolor'] = $request->input('fgcolor');
+        $article->attributes['subtitle'] = $request->input('subtitle');
+        $article->attributes['relevance'] = $request->input('relevance');
+
+
+    }
+
+    
 
     public function delete(Request $request, $id)
     {
@@ -44,16 +59,21 @@ class NewsController extends Controller
         return 204;
     }
     
-    public function composeView($page){
+
+    public function composeView($page, Request $request){
+        $num = count($this->index());
 
         $queue = 10;
-        $start = $page * $queue;
-        $end = $start + $queue;
+        $end = $num + 1 - ($page * $queue);
+        $start = $end - $queue;
+
+        if($page<0){
+            return redirect('/news/'.(string)floor($num/$queue));
+        }
        
         $articles = $this->queryrange($start,$end);
         if (sizeof($articles) == 0) {
-            return redirect('/news/'.(string)(floor(count($this->index())/$queue)));
-            # code...
+            return redirect('/news/0');
         }
 
         return view('news',[
@@ -62,18 +82,28 @@ class NewsController extends Controller
 
         ]);
         
-
-
-
     }
 
-    
+    public function composeArticle($id){
+        $article = $this->query($id);
 
-    
+        if ($article != null){
+            return view('article',['article'=>$article]);
+
+        }
+        $last = count($this->index());
+        return redirect('/news/article/'.(string)$last)->with('status','Como no se encontro el articulo, ¡Te regresamos al último!.');
+        
+    }
+
+    public function adminView(){
+        return view('admin', ['articles'=>$this->index()]);
+    }
 
 
+    public function editNewsView($id){
+        return view('editArticle');
+    }
 
-
-    
    
 }

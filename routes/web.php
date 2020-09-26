@@ -24,8 +24,13 @@ Route::get('/news', function(){
     return redirect('news/0');
 });
 Route::get('/news/{page}', [NewsController::class, 'composeView']);
+Route::get('/news/article/{id}',[NewsController::class,'composeArticle']);
+
+Route::get('/admin', [NewsController::class, 'adminView'])->middleware('admin.control');
+Route::get('/admin/edit/article/{id}', [NewsController::class, 'editNewsView'])->middleware('admin.control');
+
 
 Route::get('/login', [LoginController::class, 'show']);
 Route::post('/login', [LoginController::class, 'onLogin']);
-Route::get('/admin', [AdminController::class, 'show'])->middleware('admin.control');
 Route::get('/logout', [LoginController::class,'logout']);
+

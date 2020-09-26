@@ -63,23 +63,18 @@ html {
     <div class="cards root  max-w-default">
         
 
-        @foreach ($cards as $card)
+        @foreach ($cards->reverse() as $card)
             @if ($card->relevance == 1)
-            <div class='column w-full'>
+        <div class='column w-full' >
 
-                <div class='card' style=" background-color: {{$card->bgcolor}}; color: {{$card->fgcolor}}; ">
+                <div class='card' style=" background-color: {{$card->bgcolor}}; color: {{$card->fgcolor}}; " onclick="window.location='article/{{$card->id}}'">
                     @if ($card->image)
                     <img {{"src=/img/$card->image" }} class='w-full' />
-
-                        
-                    @else
-
-                        
                     @endif
     
         
                     <div class='card-body flex flex-col justify-center'>
-                        <div class='title text-lg md:text-4xl leading-6 md:leading-10  '>{{$card->title}}</div>
+                        <div class='title text-lg md:text-4xl leading-6 md:leading-10  '>{{$card->title}} {{$card->id}}</div>
                         <div class='text-base md:text-xl text-justify'>
                             {{substr($card->body,0,270).'...'}}
                         </div>
@@ -101,7 +96,7 @@ html {
 
 
             <div class='column w-full '>
-            <div class='card card-irrelevant flex ' style="color: {{$card->fgcolor}}; background-color: {{$card->bgcolor}};"  >
+            <div class='card card-irrelevant flex ' style="color: {{$card->fgcolor}}; background-color: {{$card->bgcolor}};"  onclick="window.location='article/{{$card->id}}'" >
 
                         @if ($card->image)
                         <div class=" h-full py-4 pl-4 left-0" style="width:17rem;">
@@ -117,7 +112,7 @@ html {
                         <div class='  justify-center w-full h-full text-md sm:text-lg md:text-2xl  flex items-center relative '>
 
                             <div class="text-center absolute  font-bold w-full" style="overflow-wrap:break-word; height:auto" >
-                                {{$card->title}} 
+                                {{$card->title}} {{$card->id}}
                             </div>
                         </div>
                     </div>

@@ -13,19 +13,15 @@ module.exports = {
         '1/2': "50%"
       },
 
-      
-
       colors: {
         huellitas_brown: '#6a3e19',
         huellitas_green: '#86b727',
         huellitas_dark: '#293146',
         huellitas_light: '#2fafcc',
         huellitas_pink: '#a77f87',
-
-        
-        
-        
-        
+      },
+      screens:{
+        'tiny': '300px'
       }
 
       

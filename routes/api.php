@@ -20,11 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('articles', [NewsController::class,'index']);
-Route::get('articles/{id}', [NewsController::class,'query']);
-Route::get('articles/range/{start}-{end}', [NewsController::class,'queryrange']);
-Route::post('articles', [NewsController::class,'save']);
-Route::put('articles/{id}', [NewsController::class,'update']);
-Route::delete('articles/{id}', [NewsController::class,'delete']);
+Route::get('articles/{id}', [NewsController::class,'query'])->middleware("auth.api.article");
+Route::get('articles/range/{start}-{end}', [NewsController::class,'queryrange'])->middleware("auth.api.article");
+Route::post('articles', [NewsController::class,'save'])->middleware("auth.api.article");
+Route::put('articles/{id}', [NewsController::class,'update'])->middleware("auth.api.article");
+Route::delete('articles/{id}', [NewsController::class,'delete'])->middleware("auth.api.article");
 
 
 

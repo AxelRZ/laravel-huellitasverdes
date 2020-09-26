@@ -17,14 +17,16 @@ class NewsDefault extends Seeder
         $faker = \Faker\Factory::create();
 
         for ($i=0; $i < 15; $i++) { 
+            $text = $faker->paragraph;
             Article::create([
                 'title' => $faker->sentence,
                 'subtitle' => $faker->sentence,
-                'body' => $faker->paragraph,
+                'body' => $text,
                 'relevance' => (int)$faker->boolean,
-                'image' => "",
+                'image' => "cat.jpg",
                 'bgcolor' => 'white',
-                'fgcolor' => 'black'
+                'fgcolor' => 'black',
+                'body_raw' => $text
                 
             ]);
         }

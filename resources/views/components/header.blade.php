@@ -4,10 +4,17 @@
 
 
             <div class=" whitespace-no-wrap flex-shrink ml-4 ">
+                <a href="/">
                 <i class="fas fa-paw fa-2x fill-current text-huellitas_brown "></i>
+
+                    <span class="text-3xl font-bold hidden tiny:inline-block">Huellitas</span>
+                    <span class="text-3xl font-bold text-huellitas_green hidden tiny:inline-block">verdes</span>
+
+                </a>
+                {{-- <i class="fas fa-paw fa-2x fill-current text-huellitas_brown "></i>
                 <a href="/" class="text-3xl  mx-auto font-bold ">Huellitas <span
                         class=" text-huellitas_green">verdes</span>
-                </a>
+                </a> --}}
 
             </div>
 

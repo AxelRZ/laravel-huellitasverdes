@@ -20,10 +20,19 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert(
             [
-                'name' => 'root',
+                'name' => 'nonroot',
                 'email' => 'garfo.axelrz2@gmail.com',
                 'password' => Hash::make('root'),
                 'admin' => false
+            ]
+            );
+
+        DB::table('users')->insert(
+            [
+                'name' => 'root',
+                'email' => 'garfo.axelrz@gmail.com',
+                'password' => Hash::make('root'),
+                'admin' => true
             ]
             );
         //

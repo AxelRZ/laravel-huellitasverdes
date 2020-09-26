@@ -20,14 +20,19 @@ class NewsSeeder extends Seeder
         //
 
         for ($i=0; $i < 100; $i++) { 
+            $base = $faker->paragraphs;
+            $text = implode( "<br>", $base);
+            $body = implode($base);
+
             Article::create([
                 'title' => $faker->sentence,
                 'subtitle' => $faker->sentence,
-                'body' => $faker->paragraph,
+                'body' => $body,
                 'relevance' => (int)$faker->boolean,
                 'image' => "dog.jpg",
                 'bgcolor' => $colors[array_rand($colors,1)],
-                'fgcolor' => 'white'
+                'fgcolor' => 'white',
+                'body_raw' => $faker->randomHtml
                 
             ]);
         }
