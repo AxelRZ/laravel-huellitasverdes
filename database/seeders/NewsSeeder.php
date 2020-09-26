@@ -32,7 +32,8 @@ class NewsSeeder extends Seeder
                 'image' => "dog.jpg",
                 'bgcolor' => $colors[array_rand($colors,1)],
                 'fgcolor' => 'white',
-                'body_raw' => $faker->randomHtml
+                'body_raw' => $faker->randomHtml,
+                'author' => $faker->name
                 
             ]);
         }

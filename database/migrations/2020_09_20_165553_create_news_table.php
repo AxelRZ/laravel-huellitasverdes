@@ -37,6 +37,7 @@ class CreateNewsTable extends Migration
             $table->string('fgcolor')->default('#FFFFFF');
             $table->text('body_raw')->nullable();
             $table->string('last_editor')->nullable();
+            $table->string('author');
             
 
         });

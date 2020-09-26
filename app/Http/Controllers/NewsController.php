@@ -102,7 +102,7 @@ class NewsController extends Controller
 
 
     public function editNewsView($id){
-        return view('editArticle');
+        return view('editArticle',['article'=>$this->query($id)]);
     }
 
    
