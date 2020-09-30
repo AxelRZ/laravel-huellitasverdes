@@ -28,6 +28,9 @@ Route::get('/news/article/{id}',[NewsController::class,'composeArticle']);
 
 Route::get('/admin', [NewsController::class, 'adminView'])->middleware('admin.control');
 Route::get('/admin/edit/article/{id}', [NewsController::class, 'editNewsView'])->middleware('admin.control');
+Route::post('/admin/preview', [NewsController::class, 'showPreview'])->middleware('admin.control');
+Route::get('/admin/preview', [NewsController::class, 'showPreview'])->middleware('admin.control');
+
 
 
 Route::get('/login', [LoginController::class, 'show']);

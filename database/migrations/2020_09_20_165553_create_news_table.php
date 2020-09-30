@@ -29,7 +29,6 @@ class CreateNewsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->text('subtitle')->nullable();
-            $table->text('keywords')->nullable();
             $table->smallInteger('relevance')->default(0);  
             $table->text('body');
             $table->string('image')->nullable();

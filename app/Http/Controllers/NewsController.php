@@ -20,7 +20,6 @@ class NewsController extends Controller
 
         return Article::where('id','>=',$start)->where('id','<',$end)->get();
 
-
     }
 
     public function create(Request $request)
@@ -46,10 +45,12 @@ class NewsController extends Controller
         $article->attributes['subtitle'] = $request->input('subtitle');
         $article->attributes['relevance'] = $request->input('relevance');
 
-
+        return redirect('/admin/preview/{id}'.$request->input('id'));
     }
 
-    
+    public function redirectPreview(Request $request){
+        return view('preview', $request->all());
+    }
 
     public function delete(Request $request, $id)
     {
@@ -101,9 +102,40 @@ class NewsController extends Controller
     }
 
 
-    public function editNewsView($id){
+    public function editNewsView($id, Request $req){
+        $_s_article = $this->query($id)->replicate();
+        
+        $art = $_s_article->map(function ($article){
+            return $article->getAttributes();
+        })->all();
+
+        $req->session()->put('article',$art);
+
+
+
+
         return view('editArticle',['article'=>$this->query($id)]);
     }
+
+    public function showPreview(Request $req){
+        
+        $_s_article = Article::hydrate($req->session()->get('article'))
+        return redirect('/admin/preview')->withInput(['article' =>$prev_article]);
+
+    }
+
+    public function composePreview(Request $req){
+
+        $article = $req->input('article');
+
+        if($article == null){
+            return abort(404);
+        }
+        return view('preview',['article'=>$article]);
+
+    }
+
+
 
    
 }
