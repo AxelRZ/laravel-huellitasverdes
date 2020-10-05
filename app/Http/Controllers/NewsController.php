@@ -119,8 +119,8 @@ class NewsController extends Controller
 
     public function showPreview(Request $req){
         
-        $_s_article = Article::hydrate($req->session()->get('article'))
-        return redirect('/admin/preview')->withInput(['article' =>$prev_article]);
+
+        //TODO
 
     }
 
