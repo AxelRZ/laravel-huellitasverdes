@@ -39,7 +39,7 @@
 
     <div class=" mt-12">
         <p>Card preview</p>
-        @if ($article->relevance == 1)
+        @if ($article->relevant == false)
         <div class='column w-full' >
 
                 <div class='card' style=" background-color: {{$article->bgcolor}}; color: {{$article->fgcolor}}; " onclick="window.location='article/{{$article->id}}'">

@@ -22,10 +22,10 @@ class NewsDefault extends Seeder
                 'title' => $faker->sentence,
                 'subtitle' => $faker->sentence,
                 'body' => $text,
-                'relevance' => (int)$faker->boolean,
+                'relevant' => $faker->boolean,
                 'image' => "cat.jpg",
-                'bgcolor' => 'white',
-                'fgcolor' => 'black',
+                'bgcolor' => '#ffffff',
+                'fgcolor' => '#000000',
                 'body_raw' => $text,
                 'author' => $faker->name
                 

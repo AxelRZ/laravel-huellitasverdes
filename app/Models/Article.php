@@ -10,7 +10,7 @@ class Article extends Model
 
     protected $table = 'news';
 
-    protected $fillable = ['id','title','subtitle','relevance','body','image','bgcolor','fgcolor','body_raw','last_editor'];
+    protected $fillable = ['id','title','subtitle','relevant','body','image','bgcolor','fgcolor','body_raw','last_editor'];
     
 
     

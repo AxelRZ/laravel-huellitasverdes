@@ -16,7 +16,7 @@ class NewsSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
         $colors = ['#6a3e19', '#293146', '#2fafcc'];
-        $fgcolors = ['white','black'];
+        $fgcolors = ['#000000','#FFFFFF'];
         //
 
         for ($i=0; $i < 100; $i++) { 
@@ -28,10 +28,10 @@ class NewsSeeder extends Seeder
                 'title' => $faker->sentence,
                 'subtitle' => $faker->sentence,
                 'body' => $body,
-                'relevance' => (int)$faker->boolean,
+                'relevant' => $faker->boolean,
                 'image' => "dog.jpg",
                 'bgcolor' => $colors[array_rand($colors,1)],
-                'fgcolor' => 'white',
+                'fgcolor' => $fgcolors[1],
                 'body_raw' => $faker->randomHtml,
                 'author' => $faker->name
                 

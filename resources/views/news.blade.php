@@ -64,7 +64,7 @@ html {
         
 
         @foreach ($cards->reverse() as $card)
-            @if ($card->relevance == 1)
+            @if ($card->relevant == true)
         <div class='column w-full' >
 
                 <div class='card' style=" background-color: {{$card->bgcolor}}; color: {{$card->fgcolor}}; " onclick="window.location='article/{{$card->id}}'">

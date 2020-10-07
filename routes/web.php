@@ -26,12 +26,11 @@ Route::get('/news', function(){
 Route::get('/news/{page}', [NewsController::class, 'composeView']);
 Route::get('/news/article/{id}',[NewsController::class,'composeArticle']);
 
+
 Route::get('/admin', [NewsController::class, 'adminView'])->middleware('admin.control');
 Route::get('/admin/edit/article/{id}', [NewsController::class, 'editNewsView'])->middleware('admin.control');
 Route::post('/admin/preview', [NewsController::class, 'showPreview'])->middleware('admin.control');
-Route::get('/admin/preview', [NewsController::class, 'showPreview'])->middleware('admin.control');
-
-
+Route::post('/admin/post', [NewsController::class,'updateArticle']);
 
 Route::get('/login', [LoginController::class, 'show']);
 Route::post('/login', [LoginController::class, 'onLogin']);

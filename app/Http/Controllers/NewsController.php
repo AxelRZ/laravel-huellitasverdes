@@ -27,12 +27,14 @@ class NewsController extends Controller
         return Article::create($request->all());
     }
 
-    public function updateId(Request $request, $id)
+    public function updateArticle(Request $request)
     {
-        $article = Article::findOrFail($id);
-        $article->update($request->all());
+        $id = $request->session()->get('id');
+        $request->session()->forget('id');
 
-        return $article;
+        $article = Article::findOrFail($id);
+        $article->fill($request->all())->save();
+        return redirect('/admin')->with('status', 'Se actualizo con exito');
     }
 
     public function update(Request $request){
@@ -43,7 +45,7 @@ class NewsController extends Controller
         $article->attributes['bgcolor'] = $request->input('bgcolor');
         $article->attributes['fgcolor'] = $request->input('fgcolor');
         $article->attributes['subtitle'] = $request->input('subtitle');
-        $article->attributes['relevance'] = $request->input('relevance');
+        $article->attributes['relevant'] = $request->input('relevant');
 
         return redirect('/admin/preview/{id}'.$request->input('id'));
     }
@@ -102,27 +104,25 @@ class NewsController extends Controller
     }
 
 
-    public function editNewsView($id, Request $req){
-        $_s_article = $this->query($id)->replicate();
+    public function editNewsView($id ,Request $req){
+
+        $req->session()->put("id",$id);
         
-        $art = $_s_article->map(function ($article){
-            return $article->getAttributes();
-        })->all();
-
-        $req->session()->put('article',$art);
-
-
-
-
         return view('editArticle',['article'=>$this->query($id)]);
     }
 
     public function showPreview(Request $req){
+        $id = $req->session()->get('id');
+        $_s_article = $this->query($id)->replicate();
+        $_s_article->fill($req->all());
         
 
-        //TODO
+
+        return view('preview',["article" => $_s_article]);
 
     }
+
+    
 
     public function composePreview(Request $req){
 
