@@ -27,7 +27,6 @@ class NewsDefault extends Seeder
                 'bgcolor' => '#ffffff',
                 'fgcolor' => '#000000',
                 'body_raw' => $text,
-                'author' => $faker->name
                 
             ]);
         }

@@ -3,6 +3,39 @@
 @section('title',"Huellitas Verdes")
 
 @section('css')
+<style>
+
+.title{
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+.card-body{
+    padding: 1rem 1.5rem;
+    height: 15rem;
+}
+.card-irrelevant{
+    height: 9rem;
+    width: 100%;
+    
+}
+.irr-image{
+    height: 100%;
+}
+.bghuellitas{
+    background: url('/img/pattern.png')
+}
+
+
+.card-wrapper{
+    background: url("/img/pattern.png");
+
+}
+
+.card img{
+    max-height: 500px;
+}
+</style>
 
 @endsection
 
@@ -37,65 +70,33 @@
 
     </div>
 
-    <div class=" mt-12">
-        <p>Card preview</p>
-        @if ($article->relevant == false)
-        <div class='column w-full' >
-
-                <div class='card' style=" background-color: {{$article->bgcolor}}; color: {{$article->fgcolor}}; " onclick="window.location='article/{{$article->id}}'">
-                    @if ($article->image)
-                    <img {{"src=/img/$article->image" }} class='w-full' />
-                    @endif
     
-        
-                    <div class='card-body flex flex-col justify-center'>
-                        <div class='title text-lg md:text-4xl leading-6 md:leading-10  '>{{$article->title}} {{$article->id}}</div>
-                        <div class='text-base md:text-xl text-justify'>
-                            {{substr($article->body,0,270).'...'}}
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </div>
 
-                
+</div>
+<p class="text-center my-4 font-bold">Card preview</p>
 
+<div class="w-full bghuellitas p-4">
+    <div class="max-w-default mx-auto ">
+    
+        @if ($article->relevant == true)
+    
+            @include('components.card-1',['card'=>$article]);
+    
             @else
-            <div class='column w-full '>
-            <div class='card card-irrelevant flex ' style="color: {{$article->fgcolor}}; background-color: {{$article->bgcolor}};"  onclick="window.location='article/{{$article->id}}'" >
-
-                        @if ($article->image)
-                        <div class=" h-full py-4 pl-4 left-0" style="width:17rem;">
-
-                        <img {{"src=/img/$article->image" }} class="irr-image rounded" alt="" srcset="" style="object-fit:cover;"/>
-                        </div>
-
-                        @endif
-                        
-                    <div class='card-body w-full items-center flex-grow-1 text-bold' style="height:100%; padding:0.75rem 0.75rem; )  ">
-                            
-                            
-                        <div class='  justify-center w-full h-full text-md sm:text-lg md:text-2xl  flex items-center relative '>
-
-                            <div class="text-center absolute  font-bold w-full" style="overflow-wrap:break-word; height:auto" >
-                                {{$article->title}} {{$article->id}}
-                            </div>
-                        </div>
-                    </div>
+    
+            @include('components.card-0',['card'=>$article]);
+    
+            
+        @endif
         
-                </div>
-                
-            </div>
-            @endif
-
-
-
+    
+    
+    
     </div>
 
 </div>
+
+
 
     
 @endsection

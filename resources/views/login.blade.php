@@ -24,7 +24,7 @@
         <form action="/login" method="post">
             @csrf
             <label for="first">mail</label>
-            <input type="text" name="email" id="first"><br>
+            <input type="text" name="name" id="first"><br>
             <label for="second">pass</label>
             <input type="text" name="password" id="second"><br>
             <input type="submit">

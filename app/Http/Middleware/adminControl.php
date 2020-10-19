@@ -20,11 +20,8 @@ class adminControl
 
         $user = $request->user();
 
-        
-
         if($user != null && $user->isAdmin()){
             return $next($request);
-
 
         }else{
             return redirect('/')->with('status','Your access is forbidden');

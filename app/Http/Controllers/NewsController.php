@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class NewsController extends Controller
 {
-
 
     public function index(){
         return Article::all();
@@ -26,6 +28,13 @@ class NewsController extends Controller
     {
         return Article::create($request->all());
     }
+    public function createArticle(Request $request)
+    {
+        $art = $this->create($request);
+        $art->last_editor = Auth::user()->name;
+        $art->save();
+        return redirect('/admin')->with('status', 'Se creo con exito');
+    }
 
     public function updateArticle(Request $request)
     {
@@ -33,33 +42,38 @@ class NewsController extends Controller
         $request->session()->forget('id');
 
         $article = Article::findOrFail($id);
+
+        $article->last_editor = Auth::user()->name;
+        
+    
         $article->fill($request->all())->save();
+
         return redirect('/admin')->with('status', 'Se actualizo con exito');
     }
 
-    public function update(Request $request){
-        $article = Article::findOrFail($request->input('id'));
-
-        $article->attributes['title'] = $request->input('title');
-        $article->attributes['body_raw'] = $request->input('body_raw');
-        $article->attributes['bgcolor'] = $request->input('bgcolor');
-        $article->attributes['fgcolor'] = $request->input('fgcolor');
-        $article->attributes['subtitle'] = $request->input('subtitle');
-        $article->attributes['relevant'] = $request->input('relevant');
-
-        return redirect('/admin/preview/{id}'.$request->input('id'));
+    public function showCreate(){
+        return view('createArticle');
     }
+
 
     public function redirectPreview(Request $request){
         return view('preview', $request->all());
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
         $article = Article::findOrFail($id);
         $article->delete();
 
-        return 204;
+        return 1;
+
+    }
+    public function deleteArticle(Request $req){
+        $id = $req->session()->get('id');
+        $this->delete($id);
+
+        return redirect('/admin')->with('status', 'Se elimino con exito. id: '.$id);
+
     }
     
 
@@ -84,7 +98,6 @@ class NewsController extends Controller
             'page' => $page
 
         ]);
-        
     }
 
     public function composeArticle($id){
@@ -99,10 +112,12 @@ class NewsController extends Controller
         
     }
 
-    public function adminView(){
+    public function adminView(Request $req){
+
+        $req->session()->forget('id');
+        
         return view('admin', ['articles'=>$this->index()]);
     }
-
 
     public function editNewsView($id ,Request $req){
 
@@ -112,17 +127,19 @@ class NewsController extends Controller
     }
 
     public function showPreview(Request $req){
-        $id = $req->session()->get('id');
-        $_s_article = $this->query($id)->replicate();
-        $_s_article->fill($req->all());
-        
+        if ($req->session()->has('id')){
+            $id = $req->session()->get('id');
+            $_s_article = $this->query($id)->replicate();
+            $_s_article->fill($req->all());
+            return view('preview',["article" => $_s_article]);
+        }
 
+        $art = new Article;
+        $art->fill($req->all());
 
-        return view('preview',["article" => $_s_article]);
+        return view('preview',["article"=> $art]);
 
     }
-
-    
 
     public function composePreview(Request $req){
 
@@ -132,10 +149,6 @@ class NewsController extends Controller
             return abort(404);
         }
         return view('preview',['article'=>$article]);
-
     }
-
-
-
    
 }

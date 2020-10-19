@@ -65,61 +65,13 @@ html {
 
         @foreach ($cards->reverse() as $card)
             @if ($card->relevant == true)
-        <div class='column w-full' >
 
-                <div class='card' style=" background-color: {{$card->bgcolor}}; color: {{$card->fgcolor}}; " onclick="window.location='article/{{$card->id}}'">
-                    @if ($card->image)
-                    <img {{"src=/img/$card->image" }} class='w-full' />
-                    @endif
-    
-        
-                    <div class='card-body flex flex-col justify-center'>
-                        <div class='title text-lg md:text-4xl leading-6 md:leading-10  '>{{$card->title}} {{$card->id}}</div>
-                        <div class='text-base md:text-xl text-justify'>
-                            {{substr($card->body,0,270).'...'}}
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </div>
-
-                
+            @include('components.card-1')
 
             @else
 
-                
-                
-
-
-
-            <div class='column w-full '>
-            <div class='card card-irrelevant flex ' style="color: {{$card->fgcolor}}; background-color: {{$card->bgcolor}};"  onclick="window.location='article/{{$card->id}}'" >
-
-                        @if ($card->image)
-                        <div class=" h-full py-4 pl-4 left-0" style="width:17rem;">
-
-                        <img {{"src=/img/$card->image" }} class="irr-image rounded" alt="" srcset="" style="object-fit:cover;"/>
-                        </div>
-
-                        @endif
-                        
-                    <div class='card-body w-full items-center flex-grow-1 text-bold' style="height:100%; padding:0.75rem 0.75rem; )  ">
-                            
-                            
-                        <div class='  justify-center w-full h-full text-md sm:text-lg md:text-2xl  flex items-center relative '>
-
-                            <div class="text-center absolute  font-bold w-full" style="overflow-wrap:break-word; height:auto" >
-                                {{$card->title}} {{$card->id}}
-                            </div>
-                        </div>
-                    </div>
-        
-                </div>
-                
-            </div>
+            @include('components.card-0')
+            
             @endif
         
 

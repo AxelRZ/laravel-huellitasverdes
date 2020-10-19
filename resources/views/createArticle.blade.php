@@ -26,52 +26,44 @@
         <form  method="post" action="/admin/post" id="form1">
             @csrf
 
-            <input type="hidden" id='title' name="id" value="{{$article->id}}">
+            <input type="hidden" id='title' name="id" >
 
             <label for="title">Title:</label><br>
-            <input type="text" name="title" id="title" class="w-full" value="{{$article->title}}"><br>
+            <input type="text" name="title" id="title" class="w-full" ><br>
 
             <label for="subtitle">Subtitle:</label><br>
-            <input type="text" name="subtitle" class="w-full" id="subtitle" value="{{$article->subtitle}}"><br>
+            <input type="text" name="subtitle" class="w-full" id="subtitle" ><br>
 
             <label for="tiny">Body:</label><br>
             <textarea name="body_raw" id="tiny" cols="30" rows="10">
-                {!!$article->body_raw!!}
             </textarea>
 
-            <input type="hidden" name="body" id="body" value="nil">
+            <input type="hidden" name="body" id="body" >
 
             <label for="bg_color">Card Background</label>
-            <input type="color" name="bgcolor" id="bg_color" value="{{$article->bgcolor}}"><br>
+            <input type="color" name="bgcolor" id="bg_color" ><br>
             
             <label for="fg_color">Card text color</label>
-            <input type="color" name="fgcolor" id="fg_color" value="{{$article->fgcolor}}"><br>   
+            <input type="color" name="fgcolor" id="fg_color" ><br>   
 
             <label for="relevant">Important?</label>
-            <input type="checkbox" name="relevant" id="relevant" {{($article->relevant)?'checked':''}}><br>
+            <input type="checkbox" name="relevant" id="relevant" ><br>
 
-            <label for="image">File name </label>
-            <input type="text" name="image" id="image" value="{{$article->image}}">
+            <label for="image">File path: /img/</label>
+            <input type="text" name="image" id="image" value="">
 
-            <img src="/img/{{$article->image}}" alt="" srcset="">
 
             @csrf
 
+            <button onclick="preview()">Vista previa</button> <br>
+            <br>
 
-            <button class="border-2 my-2 hover:bg-black hover:text-white" onclick="preview()">Vista previa</button> <br>
-
-            @if(Auth::user()->name == "el_patron")
-            <button class="border-2 my-2 hover:bg-black hover:text-white" onclick="fdelete()">BORRAR</button>
-            @endif
-
-            <button class="border-2 my-2 hover:bg-black hover:text-white" onclick="fsubmit()"  >Actualizar</button>
-
+            <button onclick="fsubmit()" class="w-full" >Subir</button>
 
             
 
 
         </form>
-
 
     </div>
 </div>
@@ -83,13 +75,6 @@
     let form = document.querySelector('#form1');
 
 
-    function fdelete(){
-        confirm("Estas seguro que deseas borrar el articulo?");
-        form.action="/admin/delete";
-        form.submit();
-
-
-    }
 
     function preview(){
         
@@ -102,7 +87,7 @@
     }
 
     function fsubmit(){
-        form.action='/admin/updated'
+        form.action='/admin/created'
         document.querySelector('#body').value = tinymce.activeEditor.getContent({format:'text'});
         form.submit();
     }

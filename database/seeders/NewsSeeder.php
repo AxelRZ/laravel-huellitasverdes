@@ -33,7 +33,6 @@ class NewsSeeder extends Seeder
                 'bgcolor' => $colors[array_rand($colors,1)],
                 'fgcolor' => $fgcolors[1],
                 'body_raw' => $faker->randomHtml,
-                'author' => $faker->name
                 
             ]);
         }

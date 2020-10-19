@@ -15,22 +15,17 @@ class LoginController extends Controller
     public function onLogin(Request $req){
 
         $validate = array(
-            'email' => 'required|email',
+            'name' => 'required',
             'password' => 'required|alphaNum|min:3'
         );
 
         $req->validate($validate);
 
-        $userdata = array(
-            'email' => $req->only('email'),
-            'password' => $req->only('password')
-            
-        );
 
-        $email= $req->input('email');
+        $name= $req->input('name');
         $pass = $req->input('password');
 
-        if (Auth::attempt(['email' => $email, 'password' => $pass])){
+        if (Auth::attempt(['name' => $name, 'password' => $pass])){
             return redirect('/');
         }else{
             return redirect('/login')->with('status','failed to auth');
