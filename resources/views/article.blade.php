@@ -6,8 +6,6 @@
 <meta property="og:title"         content="{{$article->title}}" />
 <meta property="og:description"   content="{{$article->body}}" />
 
-
-100023031935388
 <style>
     body{
         background-color: {{$article->bgcolor}};
