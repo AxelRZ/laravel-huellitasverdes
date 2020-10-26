@@ -55,7 +55,7 @@
     </div>
     <div class="fb-share-button w-full" 
 data-href="{{Request::url()}}"
-data-layout="button_count">
+data-layout="button">
 
 </div>
 
