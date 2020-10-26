@@ -63,7 +63,7 @@ html {
     <div class="cards root  max-w-default">
         
 
-        @foreach ($cards->reverse() as $card)
+        @foreach ($cards as $card)
             @if ($card->relevant == true)
 
             @include('components.card-1')

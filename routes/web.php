@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('/news', function(){
     return redirect('news/0');
 });
-Route::get('/news/{page}', [NewsController::class, 'composeView']);
+Route::get('/news/{page}', [NewsController::class, 'composeNewsPage']);
 Route::get('/news/article/{id}',[NewsController::class,'composeArticle']);
 
 

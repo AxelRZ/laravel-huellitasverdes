@@ -60,9 +60,7 @@
 
             <button class="border-2 my-2 hover:bg-black hover:text-white" onclick="preview()">Vista previa</button> <br>
 
-            @if(Auth::user()->name == "el_patron")
             <button class="border-2 my-2 hover:bg-black hover:text-white" onclick="fdelete()">BORRAR</button>
-            @endif
 
             <button class="border-2 my-2 hover:bg-black hover:text-white" onclick="fsubmit()"  >Actualizar</button>
 
@@ -85,6 +83,7 @@
 
     function fdelete(){
         confirm("Estas seguro que deseas borrar el articulo?");
+        form.target="";
         form.action="/admin/delete";
         form.submit();
 
@@ -102,7 +101,8 @@
     }
 
     function fsubmit(){
-        form.action='/admin/updated'
+        form.action='/admin/updated';
+        form.target="";
         document.querySelector('#body').value = tinymce.activeEditor.getContent({format:'text'});
         form.submit();
     }

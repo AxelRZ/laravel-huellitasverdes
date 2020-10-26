@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -77,26 +78,17 @@ class NewsController extends Controller
     }
     
 
-    public function composeView($page, Request $request){
-        $num = count($this->index());
-
-        $queue = 10;
-        $end = $num + 1 - ($page * $queue);
-        $start = $end - $queue;
-
-        if($page<0){
-            return redirect('/news/'.(string)floor($num/$queue));
-        }
-       
-        $articles = $this->queryrange($start,$end);
-        if (sizeof($articles) == 0) {
-            return redirect('/news/0');
-        }
+    public function composeNewsPage($page, Request $req){
+        $QUEUE = 10;
+        $articles = DB::table('news')
+        ->orderBy('id','desc')
+        ->skip($page*$QUEUE)
+        ->take(10)
+        ->get();
 
         return view('news',[
             'cards' => $articles,
             'page' => $page
-
         ]);
     }
 
