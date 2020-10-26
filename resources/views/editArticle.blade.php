@@ -104,7 +104,7 @@
         form.action='/admin/updated';
         form.target="";
         if (document.querySelector('#relevant').value == "on"){
-            document.querySelector('#relevant').value = true;
+            document.querySelector('#relevant').value = 1;
         };
         document.querySelector('#body').value = tinymce.activeEditor.getContent({format:'text'});
         form.submit();

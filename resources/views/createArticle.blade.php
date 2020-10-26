@@ -90,7 +90,7 @@
         form.action='/admin/created'
         document.querySelector('#body').value = tinymce.activeEditor.getContent({format:'text'});
         if (document.querySelector('#relevant').value == "on"){
-            document.querySelector('#relevant').value = true;
+            document.querySelector('#relevant').value = 1;
         }
         form.submit();
     }
