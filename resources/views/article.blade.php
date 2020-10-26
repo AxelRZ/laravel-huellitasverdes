@@ -3,6 +3,8 @@
 @section('title',"Huellitas Verdes")
 
 @section('css')
+<meta property="og:title"         content="{{$article->title}}" />
+<meta property="og:description"   content="{{$article->body}}" />
 
 
 @endsection
@@ -51,7 +53,7 @@
     </div>
 
     </div>
-    <div class="fb-share-button" 
+    <div class="fb-share-button w-full" 
 data-href="{{Request::url()}}"
 data-layout="button_count">
 
