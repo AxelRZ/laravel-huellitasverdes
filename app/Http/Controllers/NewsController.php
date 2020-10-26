@@ -80,15 +80,19 @@ class NewsController extends Controller
 
     public function composeNewsPage($page, Request $req){
         $QUEUE = 10;
+
+        $color = "bg-huellitas_green";
+
         $articles = DB::table('news')
-        ->orderBy('id','desc')
-        ->skip($page*$QUEUE)
-        ->take(10)
-        ->get();
+            ->orderBy('id','desc')
+            ->skip($page*$QUEUE)
+            ->take(10)
+            ->get();
 
         return view('news',[
             'cards' => $articles,
-            'page' => $page
+            'page' => $page,
+            'colorbg' => $color
         ]);
     }
 

@@ -49,11 +49,7 @@
                 
                 @endauth
 
-                @guest
-                    <li><a href="/login" class="">Ingresar</a></li>
-                    
-                    
-                @endguest
+                
 
                 
 

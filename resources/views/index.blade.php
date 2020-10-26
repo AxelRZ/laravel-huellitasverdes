@@ -113,16 +113,16 @@
     <div class="owl-carousel owl-theme">
 
         <div>
-            <img src="https://source.unsplash.com/random/703x600" alt="" srcset="">
+            <img src="/img/dog.jpg" alt="" srcset="">
         </div>
         <div>
-            <img src="https://source.unsplash.com/random/702x600" alt="" srcset="">
+            <img src="/img/cat.jpg" alt="" srcset="">
         </div>        
         <div>
-            <img src="https://source.unsplash.com/random/701x600" alt="" srcset="">
+            <img src="/img/dog.jpg" alt="" srcset="">
         </div>
         <div>
-            <img src="https://source.unsplash.com/random/700x400" alt="" srcset="">
+            <img src="/img/cat.jpg" alt="" srcset="">
         </div>
 
     </div>
