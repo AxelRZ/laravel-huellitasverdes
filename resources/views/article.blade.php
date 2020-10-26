@@ -5,7 +5,9 @@
 @section('css')
 <meta property="og:title"         content="{{$article->title}}" />
 <meta property="og:description"   content="{{$article->body}}" />
-<meta property="fb:app_id" content="708771983326698" />
+
+
+100023031935388
 <style>
     body{
         background-color: {{$article->bgcolor}};
@@ -18,7 +20,7 @@
 <script>
     window.fbAsyncInit = function() {
       FB.init({
-        appId            : '708771983326698',
+        appId            : 'null',
         autoLogAppEvents : true,
         xfbml            : true,
         version          : 'v8.0'
