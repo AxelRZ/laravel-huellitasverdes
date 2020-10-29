@@ -51,9 +51,22 @@
             <input type="checkbox" name="relevant" id="relevant" {{($article->relevant)?'checked':''}}><br>
 
             <label for="image">File name </label>
-            <input type="text" name="image" id="image" value="{{$article->image}}">
+            <select name="image" id="image">
+                <option value={{$article->image}}>{{$article->image}}</option>
+                @foreach ($images as $image)
+                @if ($image == $article->image)
 
-            <img src="/img/{{$article->image}}" alt="" srcset="">
+                
+                    
+                @else
+
+                <option value={{$image}}>{{$image}}</option>
+                
+                @endif
+                @endforeach
+            </select>
+
+            <img src="/img/{{$article->image}}" id="img" alt="" srcset="">
 
             @csrf
 
@@ -79,6 +92,20 @@
 @section('js')
 <script>
     let form = document.querySelector('#form1');
+
+    function updateImage(path){
+        
+            let img = document.querySelector('#img');
+            console.log("/img/" + path);
+            img.src = `/img/${path}`;
+        
+    }
+
+    let image = document.querySelector("#image");
+
+    image.addEventListener("change",()=>{
+        updateImage(image.options[image.selectedIndex].value);
+    })
 
 
     function fdelete(){
