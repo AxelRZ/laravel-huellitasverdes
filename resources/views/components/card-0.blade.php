@@ -1,5 +1,5 @@
 <div class='column w-full '>
-    <div class='card card-irrelevant flex ' style="color: {{$card->fgcolor}}; background-color: {{$card->bgcolor}};"  onclick="window.location='article/{{$card->id}}'" >
+    <div class='card card-irrelevant flex cursor-pointer' style="color: {{$card->fgcolor}}; background-color: {{$card->bgcolor}};"  onclick="window.location='/news/article/{{$card->id}}'" >
 
                 @if ($card->image)
                 <div class=" h-full py-4 pl-4 left-0" style="width:17rem;">

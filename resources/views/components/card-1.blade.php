@@ -1,6 +1,6 @@
 <div class='column w-full' >
 
-    <div class='card' style=" background-color: {{$card->bgcolor}}; color: {{$card->fgcolor}}; " onclick="window.location='article/{{$card->id}}'">
+    <div class='card cursor-pointer' style=" background-color: {{$card->bgcolor}}; color: {{$card->fgcolor}}; " onclick="window.location='/news/article/{{$card->id}}'">
         @if ($card->image)
         <img {{"src=/img/$card->image" }} class='w-full' />
         @endif
