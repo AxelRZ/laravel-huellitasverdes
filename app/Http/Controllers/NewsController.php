@@ -52,6 +52,11 @@ class NewsController extends Controller
         return redirect('/admin')->with('status', 'Se actualizo con exito');
     }
 
+    public function listImgDir(){
+        $path = env("IMG_PATH");
+        return array_diff(scandir($path), array('.','..'));
+    }
+
     public function showCreate(){
         return view('createArticle');
     }
@@ -119,7 +124,11 @@ class NewsController extends Controller
 
         $req->session()->put("id",$id);
         
-        return view('editArticle',['article'=>$this->query($id)]);
+        return view('editArticle',
+        [
+            'article'=>$this->query($id),
+            'images' =>$this->listImgDir()
+            ]);
     }
 
     public function showPreview(Request $req){
@@ -136,6 +145,7 @@ class NewsController extends Controller
         return view('preview',["article"=> $art]);
 
     }
+
 
     public function composePreview(Request $req){
 
