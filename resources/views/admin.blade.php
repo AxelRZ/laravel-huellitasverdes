@@ -42,6 +42,10 @@
 
         </div>
 
+        <div class="mt-2">
+            <a class="w-full border-2"href="/admin/upload">Subir un archivo</a>
+        </div>
+
         
 
 
