@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\FileManagerController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +35,12 @@ Route::post('/admin/preview', [NewsController::class, 'showPreview'])->middlewar
 Route::post('/admin/updated', [NewsController::class, 'updateArticle'])->middleware('admin.control');
 
 Route::get('/admin/create/article', [NewsController::class, 'showCreate'])->middleware('admin.control');
+Route::get('/admin/upload', [FileManagerController::class, 'show'])->middleware('admin.control');
+
 
 Route::post('/admin/created', [NewsController::class, 'createArticle'])->middleware('admin.control');
 Route::post('/admin/delete', [NewsController::class, 'deleteArticle'])->middleware('admin.control');
-
+Route::post('/admin/imageupload', [FileManagerController::class, 'onUpload'])->middleware('admin.control');
 
 
 Route::get('/login', [LoginController::class, 'show']);
