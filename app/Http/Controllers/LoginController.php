@@ -16,7 +16,7 @@ class LoginController extends Controller
 
         $validate = array(
             'name' => 'required',
-            'password' => 'required|alphaNum|min:3'
+            'password' => 'required'
         );
 
         $req->validate($validate);
