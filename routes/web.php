@@ -47,3 +47,19 @@ Route::get('/login', [LoginController::class, 'show']);
 Route::post('/login', [LoginController::class, 'onLogin']);
 Route::get('/logout', [LoginController::class,'logout']);
 
+Route::get('/email/verify', function () {
+    return view('verify-email');
+    
+})->middleware(['auth'])->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $req){
+    $req->fulfill();
+    return redirect('/')->with('status','Logeado con exito');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/reverify', function (Request $req) {
+    $req->user()->sendEmailVerificationNotification();
+
+    return back()->with('status', 'Se ha enviado con exito');
+    
+})->middleware(['auth','throttle:6,1'])->name('verification.send');

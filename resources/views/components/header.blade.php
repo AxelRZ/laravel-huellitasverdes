@@ -41,7 +41,7 @@
 
                 <li><a href="/news" class="{{ (request()->is('/news'))?'font-bold':'' }}">Noticias</a></li>
                 @auth
-                    @if(auth()->user()->isAdmin())
+                    @if(auth()->user()->getAccessLevel() >= 1)
                     <li><a href="/admin" class="{{ (request()->is('/admin'))?'font-bold':'' }}">Panel de administrador</a></li>
                     @endif
 

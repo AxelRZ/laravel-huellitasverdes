@@ -38,7 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdmin(){
+    public function getAccessLevel(){
         return $this->attributes['admin'];
     }
 }
