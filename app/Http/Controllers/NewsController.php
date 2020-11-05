@@ -58,7 +58,8 @@ class NewsController extends Controller
     }
 
     public function showCreate(){
-        return view('createArticle');
+        return view('createArticle', ['images' => $this->listImgDir()]);
+	
     }
 
 

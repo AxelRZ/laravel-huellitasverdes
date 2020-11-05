@@ -96,7 +96,6 @@
     function updateImage(path){
         
             let img = document.querySelector('#img');
-            console.log("/img/" + path);
             img.src = `/img/${path}`;
         
     }

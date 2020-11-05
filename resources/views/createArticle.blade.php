@@ -49,8 +49,16 @@
             <label for="relevant">Important?</label>
             <input type="checkbox" name="relevant" id="relevant" ><br>
 
-            <label for="image">File path: /img/</label>
-            <input type="text" name="image" id="image" value="">
+            <label for="image">File name </label>
+            <select name="image" id="image">
+                @foreach ($images as $image)
+		
+                <option value={{$image}}>{{$image}}</option>
+
+                @endforeach
+            </select>
+
+            <img id="img" alt="" srcset="">
 
 
             @csrf
@@ -74,6 +82,19 @@
 <script>
     let form = document.querySelector('#form1');
 
+
+    function updateImage(path){
+        
+            let img = document.querySelector('#img');
+            img.src = `/img/${path}`;
+        
+    }
+
+    let image = document.querySelector("#image");
+
+    image.addEventListener("change",()=>{
+        updateImage(image.options[image.selectedIndex].value);
+    })
 
 
     function preview(){
