@@ -83,7 +83,7 @@ body{
         @endif
         
     
-        <div class="text-justify word" style="hyphens: auto">
+        <div class="text-justify" style="hyphens: auto">
             {!!$article->body_raw!!}
     
         </div>
