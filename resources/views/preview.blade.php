@@ -83,7 +83,7 @@ body{
         @endif
         
     
-        <div class="text-justify">
+        <div class="text-justify word" style="hyphens: auto">
             {!!$article->body_raw!!}
     
         </div>
@@ -115,7 +115,7 @@ data-layout="button">
     <div class="w-full  bghuellitas p-4">
         <div class="max-w-default mx-auto ">
         
-            @if ($article->relevant == true)
+            @if ($article->relevant)
         
                 @include('components.card-1',['card'=>$article]);
         

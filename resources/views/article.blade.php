@@ -55,7 +55,7 @@
         @endif
         
     
-        <div class="text-justify">
+        <div class="text-justify" style="hyphens: auto">
             {!!$article->body_raw!!}
     
         </div>
