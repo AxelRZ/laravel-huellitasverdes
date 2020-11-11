@@ -39,7 +39,7 @@
                 {!!$article->body_raw!!}
             </textarea>
 
-            <input type="hidden" name="body" id="body" value="nil">
+            <input type="hidden" name="body" id="body" value="">
 
             <label for="bg_color">Card Background</label>
             <input type="color" name="bgcolor" id="bg_color" value="{{$article->bgcolor}}"><br>
@@ -48,7 +48,7 @@
             <input type="color" name="fgcolor" id="fg_color" value="{{$article->fgcolor}}"><br>   
 
             <label for="relevant">Important?</label>
-            <input type="checkbox" name="relevant" id="relevant" {{($article->relevant)?'checked':''}}><br>
+            <input type="checkbox" name="relevant" id="relevant"  {{($article->relevant)?'checked':''}}><br>
 
             <label for="image">File name </label>
             <select name="image" id="image">
@@ -92,6 +92,8 @@
 @section('js')
 <script>
     let form = document.querySelector('#form1');
+    checkbox.value = true;
+
 
     function updateImage(path){
         
@@ -129,9 +131,6 @@
     function fsubmit(){
         form.action='/admin/updated';
         form.target="";
-        if (document.querySelector('#relevant').value == "on"){
-            document.querySelector('#relevant').value = 1;
-        };
         document.querySelector('#body').value = tinymce.activeEditor.getContent({format:'text'});
         form.submit();
     }
