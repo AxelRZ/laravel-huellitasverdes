@@ -24,7 +24,7 @@ class adminControl
             return $next($request);
 
         }else{
-            return redirect('/')->with('status','Your access is forbidden');
+            return redirect('/')->with('status','Acceso prohibido.');
         }
     }
 }

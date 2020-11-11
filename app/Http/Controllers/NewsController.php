@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 class NewsController extends Controller
 {
 
+    // HELPER FUNCTIONS
     public function index(){
         return Article::all();
     }
@@ -29,9 +30,27 @@ class NewsController extends Controller
     {
         return Article::create($request->all());
     }
+    public function delete($id)
+    {
+        $article = Article::findOrFail($id);
+        $article->delete();
+
+        return 1;
+
+    }
+
+    // ROUTE FUNCTIONS
     public function createArticle(Request $request)
     {
         $art = $this->create($request);
+
+        if (!$request->has('relevant') || !$request->relevant){
+            $art->relevant = false;
+            
+        }else{
+            $art->relevant = true;
+        }
+        
         $art->last_editor = Auth::user()->name;
         $art->save();
         return redirect('/admin')->with('status', 'Se creo con exito');
@@ -45,9 +64,17 @@ class NewsController extends Controller
         $article = Article::findOrFail($id);
 
         $article->last_editor = Auth::user()->name;
+        error_log($request->relevant);
         
-    
-        $article->fill($request->all())->save();
+
+        // La forma no manda nada cuando esta vacia la checkbox
+        if (!$request->has('relevant') || !$request->relevant){
+            $article->relevant = false;
+            
+        }else{
+            $article->relevant = true;
+        }
+        $article->save();
 
         return redirect('/admin')->with('status', 'Se actualizo con exito');
     }
@@ -67,14 +94,7 @@ class NewsController extends Controller
         return view('preview', $request->all());
     }
 
-    public function delete($id)
-    {
-        $article = Article::findOrFail($id);
-        $article->delete();
-
-        return 1;
-
-    }
+    
     public function deleteArticle(Request $req){
         $id = $req->session()->get('id');
         $this->delete($id);
@@ -137,6 +157,9 @@ class NewsController extends Controller
             $id = $req->session()->get('id');
             $_s_article = $this->query($id)->replicate();
             $_s_article->fill($req->all());
+            if (!$req->has('relevant')){
+                $_s_article->relevant = false;
+            }
             return view('preview',["article" => $_s_article]);
         }
 
