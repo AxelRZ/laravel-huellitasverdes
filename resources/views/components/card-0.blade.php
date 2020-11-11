@@ -15,7 +15,7 @@
                 <div class='  justify-center w-full h-full text-md sm:text-lg md:text-2xl  flex items-center relative '>
 
                     <div class="text-center absolute  font-bold w-full" style="overflow-wrap:break-word; height:auto" >
-                        {{$card->title}} {{$card->id}}
+                        {{$card->title}} 
                     </div>
                 </div>
             </div>
